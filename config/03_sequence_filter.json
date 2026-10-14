@@ -1,0 +1,21 @@
+{
+  "input_csv": "work/02_pepmlm_generate_100k/raw_candidates.csv",
+  "target_fasta": "work/01_prepare_target/target/pepmlm_target.fasta",
+  "model_path": "models/PepMLM-650M",
+  "output_dir": "work/03_sequence_filter_100k",
+  "compute_ppl": true,
+  "ppl_max_candidates_per_length": 450,
+  "ppl_row_batch_size": 32,
+  "validate_upstream_count": 0,
+  "device": "cuda",
+  "dtype": "auto",
+  "hard_filters": {
+    "min_net_charge": -3.0,
+    "max_net_charge": 6.0,
+    "max_hydrophobic_fraction": 0.75,
+    "max_hydrophobic_run": 8,
+    "max_homopolymer_run": 5,
+    "min_normalized_entropy": 0.50,
+    "max_cysteine_count": 2
+  }
+}

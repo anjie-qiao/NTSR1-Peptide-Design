@@ -1,0 +1,25 @@
+{
+  "tasks_csv": "work/05_prepare_structure_jobs/structure_tasks_all.csv",
+  "boltz_output_dir": "work/05_prepare_structure_jobs/boltz_predictions_core",
+  "receptor_context": "work/05_prepare_structure_jobs/receptor_context.json",
+  "output_dir": "work/06_structure_filter",
+  "model_index": 0,
+  "geometry": {
+    "contact_cutoff_angstrom": 5.0,
+    "pocket_cutoff_angstrom": 6.0,
+    "clash_cutoff_angstrom": 2.0
+  },
+  "mode": "thresholds",
+  "thresholds": {
+    "min_pair_iptm_mean": 0.88,
+    "min_pair_iptm_min": 0.80,
+    "min_peptide_ptm": 0.90,
+    "min_peptide_mean_plddt": 0.70,
+    "min_peptide_q10_plddt": 0.50,
+    "max_interface_pae_mean": 8.50,
+    "max_interface_pae_q90": null,
+    "min_peptide_contact_fraction": 0.80,
+    "min_interface_residue_pairs": 40,
+    "max_severe_clash_atom_pairs": 0
+  }
+}

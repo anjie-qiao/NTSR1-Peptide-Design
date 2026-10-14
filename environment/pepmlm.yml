@@ -1,0 +1,18 @@
+name: pepmlm
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch==2.6.0+cu124
+      - transformers>=4.48,<5
+      - huggingface_hub>=0.32
+      - accelerate>=1.0
+      - numpy>=1.26,<2
+      - pandas>=2.2,<3
+      - pyarrow>=15
+      - tqdm>=4.66
+      - safetensors>=0.4
+      - matplotlib>=3.8,<3.11

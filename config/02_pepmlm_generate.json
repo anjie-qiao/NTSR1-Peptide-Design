@@ -1,0 +1,20 @@
+{
+  "target_fasta": "work/01_prepare_target/target/pepmlm_target.fasta",
+  "model_path": "models/PepMLM-650M",
+  "output_dir": "work/02_pepmlm_generate_100k",
+  "lengths": [
+    12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+    23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33
+  ],
+  "total_candidates": 100000,
+  "sampling_profiles": [
+    {"name": "focused", "weight": 0.25, "top_k": 3, "temperature": 0.8},
+    {"name": "balanced", "weight": 0.40, "top_k": 5, "temperature": 1.0},
+    {"name": "diverse", "weight": 0.25, "top_k": 10, "temperature": 1.0},
+    {"name": "exploratory", "weight": 0.10, "top_k": 10, "temperature": 1.2}
+  ],
+  "base_seed": 20260810,
+  "device": "auto",
+  "dtype": "auto",
+  "max_sampling_rounds": 50
+}

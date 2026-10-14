@@ -1,0 +1,24 @@
+{
+  "variants_csv": "work/07_afdesign_optimize/afdesign_variants_pass.csv",
+  "afdesign_manifest": "work/07_afdesign_optimize/afdesign_manifest.json",
+  "target_fasta": "work/01_prepare_target/target/pepmlm_target.fasta",
+  "target_manifest": "work/01_prepare_target/manifest/target_manifest.json",
+  "screening_masks": "work/01_prepare_target/manifest/structure_screening_masks.json",
+  "output_dir": "work/08_prepare_optimized_structure_jobs",
+  "expected_variant_count": 690,
+  "receptor_chain_id": "A",
+  "peptide_chain_id": "B",
+  "receptor_msa": "models/ntsr1_msa/ntsr1.csv",
+  "peptide_msa": "empty",
+  "boltz_prediction": {
+    "devices": 1,
+    "recycling_steps": 3,
+    "sampling_steps": 200,
+    "diffusion_samples": 1,
+    "use_potentials": true,
+    "write_full_pae": true,
+    "no_kernels": true,
+    "max_msa_seqs": 512,
+    "output_format": "pdb"
+  }
+}

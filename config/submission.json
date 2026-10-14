@@ -1,0 +1,14 @@
+{
+  "project_version": "submission-2026.10.03",
+  "track": "AI大分子与多肽药物设计",
+  "target": "Mus musculus NTSR1 (UniProt O88319)",
+  "models": {
+    "PepMLM": "ChatterjeeLab/PepMLM-650M; historical HF revision not recorded",
+    "Boltz": "boltz 2.2.1; Boltz-2 confidence checkpoint",
+    "AfDesign": "ColabDesign v1.1.3; AlphaFold params 2022-12-06; model_1_multimer_v3"
+  },
+  "final_selection_stage": 10,
+  "annotation_stage": 11,
+  "self_training_or_finetuning": false,
+  "historical_runtime_versions": "Not fully recorded; new runs record runtime_environment.json and pip freeze logs"
+}

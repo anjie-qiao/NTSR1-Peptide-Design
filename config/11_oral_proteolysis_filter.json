@@ -1,0 +1,24 @@
+{
+  "input_csv": "work/10_select_final_candidates/final_candidates_100.csv",
+  "output_dir": "work/11_oral_proteolysis_filter",
+  "expected_input_count": 100,
+  "specificity_snapshot": "data/oral_proteolysis/merops_specificity_20260929.json",
+  "pseudocount": 1.0,
+  "relative_tier_cutoffs": [33.333333333333336, 66.66666666666667],
+  "profile_mapping": {
+    "neutrophil_elastase": "S01.131",
+    "cathepsin_B": "C01.060",
+    "cathepsin_L": "C01.032",
+    "MMP8": "M10.002",
+    "MMP9": "M10.004"
+  },
+  "motif_panel": [
+    {"enzyme": "P.gingivalis_RgpA", "rule": "after_R", "source": "https://pubmed.ncbi.nlm.nih.gov/14529279/"},
+    {"enzyme": "P.gingivalis_RgpB", "rule": "after_R", "source": "https://pubmed.ncbi.nlm.nih.gov/14529279/"},
+    {"enzyme": "P.gingivalis_Kgp", "rule": "after_K", "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4231702/"},
+    {"enzyme": "human_DPP4", "rule": "preferred_Nterminal_XP_XA", "source": "https://pubmed.ncbi.nlm.nih.gov/21284559/"},
+    {"enzyme": "P.gingivalis_DPPIV", "rule": "preferred_Nterminal_XP_XA", "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC97264/"}
+  ],
+  "chemistry_assumption": "Canonical sequence only; linear all-L chemistry and terminal modifications are not verified.",
+  "policy": "Five equally weighted enzyme-family percentiles; cohort-relative tertiles are preliminary review levels, not calibrated probabilities or biological resistance thresholds."
+}

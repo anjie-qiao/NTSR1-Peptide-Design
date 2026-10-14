@@ -1,0 +1,17 @@
+{
+  "tasks_csv": "work/08_prepare_optimized_structure_jobs/structure_tasks_afdesign.csv",
+  "structure_job_manifest": "work/08_prepare_optimized_structure_jobs/structure_job_manifest.json",
+  "boltz_output_dir": "work/08_prepare_optimized_structure_jobs/boltz_predictions_afdesign",
+  "receptor_context": "work/08_prepare_optimized_structure_jobs/receptor_context.json",
+  "parent_metrics_csv": "work/06_structure_filter/structure_pass.csv",
+  "output_dir": "work/09_audit_optimized_structures",
+  "expected_task_count": 690,
+  "expected_parent_metrics_count": 244,
+  "model_index": 0,
+  "require_complete": true,
+  "geometry": {
+    "contact_cutoff_angstrom": 5.0,
+    "pocket_cutoff_angstrom": 6.0,
+    "clash_cutoff_angstrom": 2.0
+  }
+}

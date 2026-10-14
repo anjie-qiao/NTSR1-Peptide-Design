@@ -1,0 +1,17 @@
+name: afdesign
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - git
+  - setuptools
+  - wheel
+  - pip:
+      # Reproduction baseline, not a recovered historical environment lock.
+      - jax[cuda12]==0.4.38
+      - numpy==1.26.4
+      - chex==0.1.88
+      - optax==0.2.4
+      - dm-haiku==0.0.13
+      - "colabdesign @ git+https://github.com/sokrypton/ColabDesign.git@v1.1.3"

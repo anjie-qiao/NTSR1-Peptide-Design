@@ -1,0 +1,33 @@
+{
+  "input_csv": "work/06_structure_filter/structure_pass.csv",
+  "output_dir": "work/07_afdesign_optimize",
+  "afdesign_data_dir": "models/afdesign",
+  "expected_input_count": 244,
+  "receptor_chain_id": "A",
+  "peptide_chain_id": "B",
+  "mutation_rounds": 3,
+  "proposals_per_round": 3,
+  "use_multimer": true,
+  "num_recycles": 1,
+  "num_models": 1,
+  "model_names": ["model_1_multimer_v3"],
+  "dropout": false,
+  "base_seed": 20260817,
+  "loss_weights": {
+    "dgram_cce": 1.0,
+    "pae": 0.1,
+    "plddt": 0.1,
+    "i_pae": 1.0,
+    "con": 0.1,
+    "i_con": 0.5
+  },
+  "hard_filters": {
+    "min_net_charge": -3.0,
+    "max_net_charge": 6.0,
+    "max_hydrophobic_fraction": 0.75,
+    "max_hydrophobic_run": 8,
+    "max_homopolymer_run": 5,
+    "min_normalized_entropy": 0.50,
+    "max_cysteine_count": 2
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "input_csv": "work/03_sequence_filter_100k/ppl_selected.csv",
+  "input_manifest": "work/03_sequence_filter_100k/filter_manifest.json",
+  "output_dir": "work/04_rank_cluster_core",
+  "output_basename": "candidates_core",
+  "ppl_keep_fraction": 0.60,
+  "cluster_identity_threshold": 0.65,
+  "cluster_sensitivity_thresholds": [0.60, 0.65, 0.70, 0.80],
+  "make_plots": true
+}

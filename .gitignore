@@ -1,0 +1,25 @@
+# Inputs, model weights and generated results
+/data/
+/models/
+/work/
+/results/
+/outputs/
+/examples/
+
+# Python and local environment
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+.pytest_cache/
+.coverage
+
+# Local archives and editor files
+*.zip
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

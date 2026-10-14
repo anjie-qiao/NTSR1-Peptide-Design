@@ -1,0 +1,8 @@
+{
+  "archive": "models/mouse_NTSR1_6Z8N_6ZIN_pack.zip",
+  "output_dir": "work/01_prepare_target",
+  "target_name": "mouse_NTSR1",
+  "target_accession": "O88319",
+  "species": "Mus musculus",
+  "expected_length": 424
+}

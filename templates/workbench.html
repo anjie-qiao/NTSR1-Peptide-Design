@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="workbench-csrf" content="{{ csrf }}">
+  <title>多肽设计工作台</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="{{ url_for('static', filename='workbench.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='application.css') }}">
+  <script src="{{ url_for('static', filename='workbench.js') }}" defer></script>
+</head>
+<body>
+<div id="ntsr1-demo" data-needs-login="{{ 'true' if needs_login else 'false' }}">
+  <div class="product">
+    <header class="chrome">
+      <img class="competition-logo" src="{{ url_for('static', filename='gclsc-logo.png') }}" alt="全球大学生生命科学挑战赛 GCLSC">
+      <div class="brand-block"><h1 class="brand">多肽设计工作台</h1></div>
+      <nav class="workspace-nav" aria-label="工作台功能">
+        <button id="advanced-open" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg>参数配置</button>
+        <button id="runs-open" type="button" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M8 15v-4m5 4V7m5 8V4"/></svg>运行结果</button>
+      </nav>
+    </header>
+    <div class="frame">
+      <aside class="sidebar" aria-label="任务配置">
+        <h3 class="task-heading">创建筛选任务</h3>
+        <label class="field"><span>任务名称</span><input id="task-name" value="NTSR1 靶向肽设计" maxlength="80"></label>
+        <div class="task-actions">
+          <button id="preview-run" class="preview-action" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="3"/></svg>流程预览</button>
+          <button id="run" class="main-action" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg>一键运行</button>
+        </div>
+        <details class="facts"><summary>运行环境 <span id="platform"></span></summary><div><span>序列生成</span><span>PepMLM</span></div><div><span>结构预测</span><span>Boltz</span></div><div><span>局部优化</span><span>AfDesign</span></div><div class="environment-detail" id="environment-detail"></div></details>
+      </aside>
+      <main class="content">
+        <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+        <section id="workspace-results" aria-label="运行结果">
+        <div class="heading-row view-header"><h2 id="task-title">运行结果</h2><label class="source-field"><span>任务</span><select id="source" aria-label="选择筛选任务"><option value="historical">NTSR1 · 当前结果</option></select></label></div>
+        <div class="status-row"><span id="status-badge" class="badge">正在载入…</span><span class="pipeline-caption">01–11 阶段 · 2 轮结构预测</span></div>
+        <div class="progress-label"><span id="status" aria-live="polite">正在载入…</span></div>
+        <div class="track" role="progressbar" aria-label="已完成筛选阶段" aria-valuemin="0" aria-valuemax="11" aria-valuenow="0"><div id="progress" style="width:0%"></div></div>
+        <div class="tabs" role="tablist" aria-label="工作台视图"><button type="button" id="logs-tab" role="tab" aria-controls="logs" aria-selected="false">运行日志</button><button type="button" id="flow-tab" role="tab" aria-controls="flow" aria-selected="true">流程总览</button><button type="button" id="results-tab" role="tab" aria-controls="results" aria-selected="false">候选结果</button></div>
+        <section id="flow" role="tabpanel" aria-labelledby="flow-tab"><div class="flow-layout"><div id="stages" class="stage-list" aria-label="筛选节点"></div><aside id="stage-detail" class="detail" aria-label="筛选依据"></aside></div></section>
+        <section id="results" role="tabpanel" aria-labelledby="results-tab" hidden>
+          <div class="heading-row"><h3 id="results-title">候选结果</h3><a id="download-results" class="download-action" hidden>下载候选表</a></div>
+          <label class="search-field">查找候选<input id="search" type="search" placeholder="候选编号或序列"></label>
+          <div class="table-wrap"><table aria-label="候选排名、结构指标与酶切风险"><thead><tr><th>排名</th><th>候选编号 / 来源</th><th>pair ipTM</th><th>界面 PAE / Å</th><th>酶切风险</th><th>主要风险来源</th></tr></thead><tbody id="candidate-rows"></tbody></table></div>
+          <div class="pagination"><button id="previous" type="button">上一页</button><span id="page-label" class="small"></span><button id="next" type="button">下一页</button></div>
+          <div id="candidate-detail" class="detail" aria-live="polite" hidden></div>
+        </section>
+        <section id="logs" role="tabpanel" aria-labelledby="logs-tab" hidden><div class="heading-row"><h3>运行日志</h3><div class="log-actions"><a id="download-plan" class="download-action" hidden>下载流程预览</a><a id="download-log" class="download-action" hidden>下载完整日志</a></div></div><pre id="log-text" class="log-text">请选择工作台任务查看日志。</pre><div id="log-note" class="small"></div></section>
+        </section>
+        <section id="workspace-parameters" aria-labelledby="parameters-title" hidden>
+          <div class="heading-row view-header"><h2 id="parameters-title">参数配置</h2><button id="save" type="button" class="save-action" disabled>保存参数</button></div>
+          <div class="parameter-toolbar"><span id="config-state" class="small" aria-live="polite">正在载入…</span><span class="small">当前项目配置</span></div>
+          <nav id="parameter-index" class="parameter-index" aria-label="参数分组"></nav>
+          <div id="advanced-fields"></div>
+        </section>
+      </main>
+    </div>
+    <footer class="footer"><span>多肽设计工作台</span><span>PepMLM · Boltz · AfDesign</span></footer>
+  </div>
+  <dialog id="login" aria-labelledby="login-title"><h2 id="login-title">登录设计工作台</h2><label class="field"><span>服务器访问口令</span><input id="access-token" type="password" autocomplete="current-password"></label><button id="login-button" type="button" class="main-action">进入工作台</button><div id="login-error" role="alert"></div></dialog>
+</div>
+</body>
+</html>

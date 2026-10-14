@@ -1,0 +1,65 @@
+{
+  "parent_metrics_csv": "work/06_structure_filter/structure_pass.csv",
+  "optimized_metrics_csv": "work/09_audit_optimized_structures/optimized_structure_metrics_all.csv",
+  "parent_variant_comparison_csv": "work/09_audit_optimized_structures/parent_variant_comparison_all.csv",
+  "stage09_manifest": "work/09_audit_optimized_structures/structure_audit_manifest.json",
+  "output_dir": "work/10_select_final_candidates",
+  "expected_parent_count": 244,
+  "expected_variant_count": 690,
+  "final_count": 100,
+  "absolute_structure_thresholds": {
+    "min_pair_iptm_mean": 0.88,
+    "min_pair_iptm_min": 0.80,
+    "min_peptide_ptm": 0.93,
+    "min_peptide_mean_plddt": 0.70,
+    "min_peptide_q10_plddt": 0.50,
+    "max_interface_pae_mean": 8.50,
+    "max_interface_pae_q90": 25.0,
+    "min_peptide_contact_fraction": 0.80,
+    "min_interface_residue_pairs": 50,
+    "max_severe_clash_atom_pairs": 0
+  },
+  "paired_improvement": {
+    "min_exact_core_improvements": 3,
+    "min_meaningful_core_improvements": 2,
+    "meaningful_deltas": {
+      "min_delta_pair_iptm_mean": 0.01,
+      "min_delta_pair_iptm_min": 0.01,
+      "max_delta_interface_pae_mean": -0.50,
+      "max_delta_interface_pae_q90": -1.00
+    },
+    "guardrails": {
+      "min_delta_peptide_mean_plddt": -0.05,
+      "min_delta_peptide_q10_plddt": -0.08,
+      "min_delta_peptide_contact_fraction": -0.08,
+      "min_delta_pocket_peptide_contact_fraction": -0.15
+    },
+    "paired_score_scales": {
+      "pair_iptm_mean": 0.01,
+      "pair_iptm_min": 0.01,
+      "interface_pae_mean": 0.50,
+      "interface_pae_q90": 1.00,
+      "peptide_mean_plddt": 0.05,
+      "peptide_q10_plddt": 0.08,
+      "peptide_contact_fraction": 0.08,
+      "pocket_peptide_contact_fraction": 0.15
+    }
+  },
+  "ranking_metrics": [
+    {"metric": "pair_iptm_mean", "direction": "higher", "weight": 0.20},
+    {"metric": "pair_iptm_min", "direction": "higher", "weight": 0.15},
+    {"metric": "peptide_ptm", "direction": "higher", "weight": 0.05},
+    {"metric": "peptide_mean_plddt", "direction": "higher", "weight": 0.10},
+    {"metric": "peptide_q10_plddt", "direction": "higher", "weight": 0.10},
+    {"metric": "interface_pae_mean", "direction": "lower", "weight": 0.15},
+    {"metric": "interface_pae_q90", "direction": "lower", "weight": 0.10},
+    {"metric": "peptide_contact_fraction", "direction": "higher", "weight": 0.05},
+    {"metric": "interface_residue_pairs", "direction": "higher", "weight": 0.05},
+    {"metric": "pocket_peptide_contact_fraction", "direction": "higher", "weight": 0.05}
+  ],
+  "diversity": {
+    "method": "same_length_hamming",
+    "same_length_identity_threshold": 0.70,
+    "fill_to_final_count": true
+  }
+}
